@@ -84,5 +84,10 @@
         </property>
     </bean>
 
+    <bean id="carl"
+    class="com.mainserver.project.fromBook.Instrumentalist">
+        <property name="song" value="#{kenny.song}"/>
+    </bean>
+
 
 </beans>
