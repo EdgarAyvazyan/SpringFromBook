@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:P="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <bean id="duke"
+          class="com.mainserver.project.fromBook.Juggler">
+        <constructor-arg value="15"/>
+    </bean>
+
+    <bean id="poeticDuke"
+          class="com.mainserver.project.fromBook.PoeticJuggler">
+        <constructor-arg value="16"/>
+        <constructor-arg>
+            <bean class="com.mainserver.project.fromBook.Sonnet29"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="sonnet29"
+          class="com.mainserver.project.fromBook.Sonnet29">
+    </bean>
+
+    <bean id="theStage"
+          class="com.mainserver.project.fromBook.Stage"
+          factory-method="getInstance"
+          init-method="turnOn"
+          destroy-method="turnOff">
+    </bean>
+
+
+    <bean id="saxophone"
+          class="com.mainserver.project.fromBook.Saxophone">
+    </bean>
+
+    <bean id="kenny"
+          class="com.mainserver.project.fromBook.Instrumentalist">
+        <property name="song" value="Jingle Bells"/>
+        <property name="instrument">
+            <bean class="com.mainserver.project.fromBook.Saxophone"/>
+        </property>
+    </bean>
+
+    <bean id="piano"
+          class="com.mainserver.project.fromBook.Piano">
+    </bean>
+
+
+    <bean id="jon" class="com.mainserver.project.fromBook.Instrumentalist"
+          p:song="California"
+          p:instrument-ref="saxophone"
+          scope="prototype">
+    </bean>
+
+    <bean id="guitar"
+          class="com.mainserver.project.fromBook.Guitar">
+    </bean>
+
+    <bean id="cymbal"
+          class="com.mainserver.project.fromBook.Cymbal">
+    </bean>
+
+    <bean id="harmonica"
+          class="com.mainserver.project.fromBook.Harmonica">
+    </bean>
+
+    <bean id="hank"
+          class="com.mainserver.project.fromBook.OneManBand">
+        <property name="instruments">
+            <map>   <!-- it can be initialize with set Collection but set not allowed repetitive values -->
+                <entry key="GUITAR" value-ref="guitar"/>
+                <entry key="CYMBAL" value-ref="cymbal"/>
+                <entry key="HARMONICA" value-ref="harmonica"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="gago"
+          class="com.mainserver.project.fromBook.OneManBand">
+        <property name="propInstrument">
+            <props>
+                <prop key="GUITAR">STRUMP</prop>
+                <prop key="CYMBAL">CYMB CYMB</prop>
+            </props>
+        </property>
+    </bean>
+
+
+</beans>
